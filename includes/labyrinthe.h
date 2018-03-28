@@ -28,4 +28,7 @@ typedef struct	s_all
 	t_map		map;
 }				t_all;
 
+void	init_sdl();
+t_map	loadfile(char *argv);
+
 #endif
