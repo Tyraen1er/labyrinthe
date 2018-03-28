@@ -20,8 +20,8 @@ LIB_DIR			:=	./libs
 OBJ_DIR			:=	./objs
 
 # files to compile
-FILE_LIST		:=	main_init.c		\
-					pars.c
+FILE_LIST		:=	main_init.cpp		\
+					pars.cpp
 
 OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
 
@@ -37,7 +37,7 @@ INCLUDES		:=	$(LIB_FT_INC) -I$(INC_DIR)
 LINK			:=	$(LIB_FT_LINK) $(LIB_SDL_LINK) -fsanitize=address -O0
 
 # compiler and flags
-CC				:=	gcc
+CC				:=	g++
 CFLAGS			:=	-Wall -Werror -Wextra -fsanitize=address -O0
 
 all: obj libs $(NAME)
@@ -55,7 +55,7 @@ $(NAME): $(OBJ_FILES)
 # compiler rule: each .o file in OBJ_DIR needs a .c file in SRC_DIR
 # $< -- input file (.c)
 # $@ -- output file (.o)
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) $< -c $(INCLUDES) -o $@
 
 clean:

@@ -1,4 +1,4 @@
-#include "labyrinthe.h"
+#include "labyrinthe.hpp"
 
 int		nb_nb_line(char *map)
 {
