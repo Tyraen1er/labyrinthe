@@ -23,7 +23,7 @@ OBJ_DIR			:=	./objs
 FILE_LIST		:=	main_init.cpp		\
 					pars.cpp
 
-OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
+OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.cpp=.o))
 
 # libraries
 #LIB_FT			:=	$(LIB_DIR)/libft
@@ -40,13 +40,10 @@ LINK			:=	$(LIB_SDL_LINK) -fsanitize=address -O0 #$(LIB_FT_LINK)
 CC				:=	g++
 CFLAGS			:=	-Wall -Werror -Wextra -fsanitize=address -O0
 
-all: obj libs $(NAME)
+all: obj $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
-
-libs:
-#	@make -C $(LIB_FT)
 
 # linking rule: executable NAME needs OBJ_FILES to link
 $(NAME): $(OBJ_FILES)
@@ -56,7 +53,7 @@ $(NAME): $(OBJ_FILES)
 # $< -- input file (.c)
 # $@ -- output file (.o)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) $(CFLAGS) $< -c $(INCLUDES) -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
