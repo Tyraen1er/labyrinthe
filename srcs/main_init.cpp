@@ -2,13 +2,10 @@
 
 int		main(int argc, char **argv)
 {
-	t_all	data;
+	s_map	*data;
 
-	data.map = (argc == 2) ? loadfile(argv[1]) : loadfile("creationsample");
-	init_sdl(&data);
+	data = loadfile((argc == 2) ? argv[1] : "creationsample");
+	delete (data->map);
+	delete(data);
 	return (0);
-}
-
-void	init_sdl()
-{
 }

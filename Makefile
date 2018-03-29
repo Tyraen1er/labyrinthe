@@ -26,15 +26,15 @@ FILE_LIST		:=	main_init.cpp		\
 OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
 
 # libraries
-LIB_FT			:=	$(LIB_DIR)/libft
-LIB_FT_INC		:=	-I $(LIB_FT)/includes/
-LIB_FT_LINK		:=	-L $(LIB_FT) -l ft
+#LIB_FT			:=	$(LIB_DIR)/libft
+#LIB_FT_INC		:=	-I $(LIB_FT)/includes/
+#LIB_FT_LINK		:=	-L $(LIB_FT) -l ft
 
 LIB_SDL_LINK	:=	-l SDL2
 
 # our project
-INCLUDES		:=	$(LIB_FT_INC) -I$(INC_DIR)
-LINK			:=	$(LIB_FT_LINK) $(LIB_SDL_LINK) -fsanitize=address -O0
+INCLUDES		:=	-I$(INC_DIR) #$(LIB_FT_INC) 
+LINK			:=	$(LIB_SDL_LINK) -fsanitize=address -O0 #$(LIB_FT_LINK) 
 
 # compiler and flags
 CC				:=	g++
@@ -46,7 +46,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)
 
 libs:
-	@make -C $(LIB_FT)
+#	@make -C $(LIB_FT)
 
 # linking rule: executable NAME needs OBJ_FILES to link
 $(NAME): $(OBJ_FILES)
@@ -65,8 +65,7 @@ fclean: clean
 	rm -f $(NAME)
 
 relibs:
-	@make -C $(LIB_FT) re
-	@make -C $(LIB_MLX) re
+	#@make -C $(LIB_FT) re
 	@make re --no-print-directory
 
 re: fclean all

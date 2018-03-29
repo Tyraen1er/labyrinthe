@@ -6,29 +6,29 @@
 # elif __APPLE__
 #
 # endif
-# include "libft.h"
 
-typedef struct	s_map
+# include <iostream>
+# include <vector>
+# include <fstream>
+
+# define WCTOR<int> std::vector<std::vector<int>>
+
+struct		s_point
 {
+	float	x;
+	float	y;
+};
+
+struct			s_map
+{
+	WCTOR<int>	map;
 	int			limitx;
 	int			limity;
-	double		**map;
-	t_point		player;
-	t_point		plane;
-}				t_map;
-
-typedef struct	s_sdl
-{
-
-}				t_sdl;
-
-typedef struct	s_all
-{
-	t_sdl		sdl;
-	t_map		map;
-}				t_all;
+	s_point		player;
+	s_point		plane;
+};
 
 void	init_sdl();
-t_map	loadfile(char *argv);
+s_map	loadfile(char *argv);
 
 #endif

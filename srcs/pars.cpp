@@ -1,107 +1,41 @@
 #include "labyrinthe.hpp"
 
-int		nb_nb_line(char *map)
+bool	get_map(s_map &data, ifstream fd)
 {
-	int	a;
-	int	b;
+	char	c = '\0';
 
-	a = 0;
-	b = 0;
-	while (map[a] != '\n' && map[a])
+	while (fd.get(c))
 	{
-		while (!ft_isdigit(map[a]) && map[a] != 'X' && map[a] && map[a] != '\n')
-			++a;
-		if ((ft_isdigit(map[a]) || (map[a] == 'X' && ++a)) && ++b)
-			while (ft_isdigit(map[a]))
-				++a;
+		if (c == '\n')
+			data->map.push_back(std::vector<int>);
+		if ('0' <= c && c <= '9')
+			data->map.back().push_back(c - '0');
 	}
-	return (b);
-}
-
-int		nb_lines(char *map)
-{
-	int	a;
-	int	limity;
-
-	a = -1;
-	limity = 0;
-	while (map[++a])
-		if (map[a] == '\n')
-			++limity;
-	return (limity);
-}
-
-int		checkmap(char *map)
-{
-	int	a;
-	int	b;
-	int	c;
-	int	x;
-
-	x = 0;
-	c = nb_nb_line(map);
-	a = -1;
-	while (map[++a] && !(b = 0))
+	for (int i = 0; i < data->map.size() - 1; ++i)
 	{
-		while (map[a] != '\n' && map[a])
-		{
-			while (!ft_isdigit(map[a]) && map[a] != 'X' && map[a] &&
-					map[a] != '\n')
-				++a;
-			if ((ft_isdigit(map[a]) || (map[a] == 'X' && ++x && ++a)) && ++b)
-				while (ft_isdigit(map[a]))
-					++a;
-		}
-		if (b != c)
-			ft_exit(1);
+		if (data->map[i].size() != data->map[i + 1].size())
 	}
-	if (x != 1)
-		ft_exit(1);
-	return (b);
+	return (true);
 }
 
-void	load_data(t_map *data, char *map)
+bool	other_carac()
 {
-	int		i;
-	int		j;
-	int		k;
-
-	i = -1;
-	k = 0;
-	data->map = ft_memalloc(sizeof(double *) * data->limity);
-	while (++i < data->limity)
-	{
-		j = -1;
-		data->map[i] = ft_memalloc(sizeof(double) * data->limitx);
-		while (map[k] && !ft_isdigit(map[k]) && map[k] != 'X')
-			k++;
-		while (++j < data->limitx)
-		{
-			if (map[k] == 'X' && (data->player.x = j + 0.5))
-				data->player.y = i + 0.5;
-			data->map[i][j] = (double)ft_atoi(map + k);
-			while (ft_isdigit(map[k]))
-				++k;
-			while (map[++k] && !ft_isdigit(map[k]) &&
-					map[k] != '\n' && map[k] != 'X')
-				;
-		}
-	}
+	return (true);
 }
 
-t_map	loadfile(char *argv)
+s_map	loadfile(char *argv)
 {
-	int		fd;
-	char	*map;
-	t_map	data;
+	//carte délimitée par des 1
+	//carte rectangle
+	//1 seul 'X' présent
+	//Pas d'autres caractère que '0' '1' 'X'
+	ifstream	fd(argv);
+	s_map		*data;
 
-	fd = open(argv, O_RDONLY);
-	map = ft_readfile(fd);
-	data.limitx = checkmap(map);
-	data.limity = nb_lines(map);
-	if (!data.limitx && !data.limity)
-		ft_exit(1);
-	load_data(&data, map);
-	border(data);
+	if (!fd)
+		exit(3);
+	data = new(s_map);
+	if (!limit() || !other_carac())
+		exit(3);
 	return (data);
 }
