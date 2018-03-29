@@ -26,6 +26,6 @@ struct			s_map
 	s_point		plane;
 };
 
-s_map	loadfile(std::string argv, s_map &data)
+s_map	loadfile(std::string argv, s_map &data);
 
 #endif

@@ -6,6 +6,5 @@ int		main(int argc, char **argv)
 	s_map	data;
 
 	loadfile(map_file, data);
-	delete(data);
 	return (0);
 }
