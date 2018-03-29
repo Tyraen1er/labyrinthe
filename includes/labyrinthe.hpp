@@ -4,14 +4,12 @@
 # ifdef __linux__
 #  include <SDL2/SDL.h>
 # elif __APPLE__
-#
+#  include <SDL.h>
 # endif
 
 # include <iostream>
 # include <vector>
 # include <fstream>
-
-# define WCTOR<int> std::vector<std::vector<int>>
 
 struct		s_point
 {
@@ -21,14 +19,13 @@ struct		s_point
 
 struct			s_map
 {
-	WCTOR<int>	map;
+	std::vector<std::vector<int>>	map;
 	int			limitx;
 	int			limity;
 	s_point		player;
 	s_point		plane;
 };
 
-void	init_sdl();
-s_map	loadfile(char *argv);
+s_map	loadfile(std::string argv, s_map &data)
 
 #endif

@@ -2,10 +2,10 @@
 
 int		main(int argc, char **argv)
 {
-	s_map	*data;
+	std::string map_file = (argc == 2) ? argv[1] : "creationsample";
+	s_map	data;
 
-	data = loadfile((argc == 2) ? argv[1] : "creationsample");
-	delete (data->map);
+	loadfile(map_file, data);
 	delete(data);
 	return (0);
 }

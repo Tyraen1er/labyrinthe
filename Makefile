@@ -38,7 +38,7 @@ LINK			:=	$(LIB_SDL_LINK) -fsanitize=address -O0 #$(LIB_FT_LINK)
 
 # compiler and flags
 CC				:=	g++
-CFLAGS			:=	-Wall -Werror -Wextra -fsanitize=address -O0
+CFLAGS			:= -Wall -Wextra -Werror -fsanitize=address -O0
 
 all: obj $(NAME)
 
