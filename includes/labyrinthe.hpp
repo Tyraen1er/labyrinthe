@@ -10,20 +10,23 @@
 # include <iostream>
 # include <vector>
 # include <fstream>
+# include "loadfile.h"
 
-struct		s_point
+class		Point
 {
 	float	x;
 	float	y;
 };
 
-struct			s_map
+struct			Player
 {
-	std::vector<std::vector<int>>	map;
 	int			limitx;
 	int			limity;
 	s_point		player;
 	s_point		plane;
+
+	public:
+	std::vector<std::vector<int>>	map;
 };
 
 s_map	loadfile(std::string argv, s_map &data);

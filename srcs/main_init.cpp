@@ -2,9 +2,8 @@
 
 int		main(int argc, char **argv)
 {
-	std::string map_file = (argc == 2) ? argv[1] : "creationsample";
-	s_map	data;
+	s_map		data;
 
-	loadfile(map_file, data);
+	Loadfile	map((argc == 2) ? argv[1] : "creationsample");
 	return (0);
 }
