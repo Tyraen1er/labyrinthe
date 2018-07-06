@@ -10,7 +10,20 @@ Loadfile::Loadfile(std::string path)
 		std::cout << ("Error for opening file") << std::endl;
 	}
 	while (getline(fd, buffer))
-		m_content += buffer;
+	{
+		m_content += buffer + '\n';
+		m_line.push_back(buffer);
+		m_int.push_back(std::vector<int>{});
+		for (unsigned int a = 0; a < buffer.size(); ++a) 
+		{
+			if ('0' <= buffer[a] && buffer[a] <= '9')
+			{
+				m_int.back().push_back(std::stoi(&buffer[a]));
+				while ('0' <= buffer[a] && buffer[a] <= '9')
+					++a;
+			}
+		}
+	}
 	fd.close();
 }
 
@@ -25,11 +38,34 @@ Loadfile::Loadfile(const std::string path, std::string &file)
 		std::cout << ("Error for opening file") << std::endl;
 	}
 	while (getline(fd, buffer))
-		file += buffer;
+	{
+		file += buffer + '\n';
+		m_line.push_back(buffer);
+		m_int.push_back(std::vector<int>{});
+		for (unsigned int a = 0; a < buffer.size(); ++a) 
+		{
+			if ('0' <= buffer[a] && buffer[a] <= '9')
+			{
+				m_int.back().push_back(std::stoi(&buffer[a]));
+				while ('0' <= buffer[a] && buffer[a] <= '9')
+					++a;
+			}
+		}
+	}
 	fd.close();
 }
 
-std::string	Loadfile::get()
+std::string	Loadfile::get() const
 {
 	return m_content;
+}
+
+std::vector<std::vector<int> >	Loadfile::getInt() const
+{
+	return m_int;
+}
+
+size_t		Loadfile::nb_lines() const
+{
+	return m_line.size();
 }

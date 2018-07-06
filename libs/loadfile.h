@@ -9,12 +9,17 @@
 class	Loadfile
 {
 	private:
-	std::vector<std::string>	m_content;
+	int				nb_line;
+	std::string		m_content;
+	std::vector<std::string>			m_line;
+	std::vector<std::vector<int>>		m_int;
 
 	public:
 	Loadfile(const std::string path);
 	Loadfile(const std::string path, std::string &file);
+	size_t		nb_lines() const;
 	std::string	get() const;
+	std::vector<std::vector<int> >	getInt() const;
 };
 
 #endif
