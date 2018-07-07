@@ -17,6 +17,7 @@ class	Loadfile
 	public:
 	Loadfile(const std::string path);
 	Loadfile(const std::string path, std::string &file);
+	~Loadfile();
 	size_t		nb_lines() const;
 	std::string	get() const;
 	std::vector<std::vector<int> >	getInt() const;

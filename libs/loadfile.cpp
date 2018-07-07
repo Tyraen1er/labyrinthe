@@ -55,6 +55,13 @@ Loadfile::Loadfile(const std::string path, std::string &file)
 	fd.close();
 }
 
+Loadfile::~Loadfile()
+{
+	m_line.clear();
+	delete(m_line);
+}
+
+
 std::string	Loadfile::get() const
 {
 	return m_content;
