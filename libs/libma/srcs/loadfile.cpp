@@ -58,7 +58,7 @@ Loadfile::Loadfile(const std::string path, std::string &file)
 Loadfile::~Loadfile()
 {
 	m_line.clear();
-	delete(m_line);
+	delete(&m_line);
 }
 
 

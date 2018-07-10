@@ -18,9 +18,9 @@ class	Loadfile
 	Loadfile(const std::string path);
 	Loadfile(const std::string path, std::string &file);
 	~Loadfile();
-	size_t		nb_lines() const;
-	std::string	get() const;
-	std::vector<std::vector<int> >	getInt() const;
+	size_t		nb_lines() const;		// number of line of the input file, even empty
+	std::string	get() const;			// return the content in a simple string
+	std::vector<std::vector<int> >	getInt() const;	// return all int by line
 };
 
 #endif
