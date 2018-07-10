@@ -12,7 +12,7 @@ class	Loadfile
 	int				nb_line;
 	std::string		m_content;
 	std::vector<std::string>			m_line;
-	std::vector<std::vector<int>>		m_int;
+	std::vector<std::vector<int> >		m_int;
 
 	public:
 	Loadfile(const std::string path);

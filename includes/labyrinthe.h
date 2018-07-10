@@ -28,7 +28,12 @@ class			Player
 		Point		dir;
 
 	public:
-		Player(int y, int x)
+		Player()
+		{
+			dir.x = 0;
+			dir.y = -1;
+		}
+		void	setPlayer(int y, int x)
 		{
 			pos.x = x;
 			pos.y = y;
