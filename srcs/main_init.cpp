@@ -97,7 +97,7 @@ int		main(int argc, char **argv)
 	Player		play;
 	Loadfile	map((argc == 2) ? argv[1] : "creationsample");
 
-	if (check_map(map, play) == false)
+	if (!map.isReady() || check_map(map, play) == false)
 		return 0;
 	init_sdl(play);
 	return 0;

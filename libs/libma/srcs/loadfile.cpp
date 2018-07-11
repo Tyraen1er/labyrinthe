@@ -5,9 +5,11 @@ Loadfile::Loadfile(std::string path)
 	std::ifstream	fd(path);
 	std::string	buffer;
 
+	nb_line = -1;
 	if (!fd)
 	{
 		std::cout << ("Error for opening file") << std::endl;
+		return ;
 	}
 	while (getline(fd, buffer))
 	{
@@ -33,6 +35,7 @@ Loadfile::Loadfile(const std::string path, std::string &file)
 	std::string	buffer;
 
 	file.clear();
+	nb_line = -1;
 	if (!fd)
 	{
 		std::cout << ("Error for opening file") << std::endl;
@@ -61,6 +64,12 @@ Loadfile::~Loadfile()
 	delete(&m_line);
 }
 
+bool		Loadfile::isReady()
+{
+	if (nb_line == -1)
+		return false;
+	return true;
+}
 
 std::string	Loadfile::get() const
 {
