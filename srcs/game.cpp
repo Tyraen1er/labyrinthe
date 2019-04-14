@@ -1,3 +1,3 @@
-#include "labyrinthe.h"
+#include "labyrinthe.hpp"
 
 
